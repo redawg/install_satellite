@@ -1,6 +1,6 @@
 ---
 satellite:
-  version: 6.7
+  version: "6.10" 
   admin_username: admin
   admin_password: changeme
   tuning_config_files:
@@ -12,22 +12,9 @@ satellite:
       path: /etc/sysctl.d/01-satellite-tune.conf
   foreman:
     organizations:
-      - name: general
+      - name: AWS
         initial_organization: true
-      - name: josh
     locations:
-      - name: josh1
+      - name: us-west
         organizations:
-          - name: josh
-      - name: josh2
-        organizations:
-          - name: josh
-          - name: general
-      - name: msp-lab
-        initial_location: true
-        organizations:
-          - name: general
-      - name: msp-lab2
-        organizations:
-          - name: josh
-          - name: general
+          - name: AWS

@@ -2,7 +2,7 @@
 
 - name: set up satellite
   hosts:
-    - satellite
+    - all
   collections:
     - jjaswanson4.install_satellite
   pre_tasks:
