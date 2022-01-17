@@ -4,14 +4,14 @@
   yum:
     name: satellite
     state: present
-  when:
-    - groups['satellite'] is defined
-    - inventory_hostname in groups['satellite']
+    #  when:
+    #- groups['satellite'] is defined
+    #- inventory_hostname in groups['satellite']
 
-- name: install packages for satellite-capsule
-  yum:
-    name: satellite-capsule
-    state: present
-  when:
-    - groups['capsules'] is defined
-    - inventory_hostname in groups['capsules']
+    #- name: install packages for satellite-capsule
+    #  yum:
+    #    name: satellite-capsule
+    #    state: present
+    #  when:
+    #    - groups['capsules'] is defined
+    #    - inventory_hostname in groups['capsules']
