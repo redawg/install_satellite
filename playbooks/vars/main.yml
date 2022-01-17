@@ -2,7 +2,7 @@
 satellite:
   version: "6.10" 
   admin_username: admin
-  admin_password: changeme
+  admin_password: changemeafterinstalled
   tuning_config_files:
     - name: dynflowd.j2
       path: /etc/sysconfig/dynflowd
@@ -16,5 +16,7 @@ satellite:
         initial_organization: true
     locations:
       - name: us-west
+        initial_location: true
         organizations:
           - name: AWS
+
