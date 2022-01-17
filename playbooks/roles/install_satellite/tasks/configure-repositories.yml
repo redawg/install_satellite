@@ -1,0 +1,62 @@
+---
+
+- name: set repos for satellite version "{{ satellite.version }}"
+  set_fact:
+    install_repos: "{{ common_repos + satellite_repos + maintenance_repos }}"
+  when:
+    - "'satellite' in group_names"
+    - satellite.version != 'beta'
+
+- name: set repos for satellite beta
+  set_fact:
+    install_repos: "{{ common_repos + satellite_beta_repos + maintenance_beta_repos }}"
+  when:
+    - "'satellite' in group_names"
+    - satellite.version == 'beta'
+
+- name: set repos for capsules
+  set_fact:
+    install_repos: "{{ common_repos + capsule_repos + maintenance_repos }}"
+  when:
+    - groups['capsules'] is defined
+    - inventory_hostname in groups['capsules']
+
+- name: add ansible 2.8 repo for satellite <= 6.7
+  set_fact:
+    install_repos: "{{ install_repos + [ 'rhel-7-server-ansible-2.8-rpms' ] }}"
+  when:
+    - satellite.version != 'beta'
+    - satellite.version is version_compare('6.7', '<=')
+
+- name: add ansible 2.9 repo for satellite >= 6.8 or beta
+  set_fact:
+    install_repos: "{{ install_repos + [ 'rhel-7-server-ansible-2.9-rpms' ] }}"
+  when:
+    - satellite.version == 'beta' or
+      satellite.version is version_compare('6.8', '>=')
+
+- name: enable install repos
+  rhsm_repository:
+    name: "{{ repo }}"
+    state: enabled
+  loop_control:
+    loop_var: repo
+  loop:
+    - "{{ install_repos }}"
+
+- name: get other enabled repos
+  shell: subscription-manager repos --list-enabled | grep 'Repo ID' | awk '{print $3}'
+  register: enabled_repos
+  changed_when: false
+  check_mode: false
+
+- name: disable unneeded repos
+  rhsm_repository:
+    name: "{{ repo }}"
+    state: disabled
+  when:
+    - repo not in install_repos
+  loop_control:
+    loop_var: repo
+  with_items:
+    - "{{ enabled_repos.stdout_lines }}"
