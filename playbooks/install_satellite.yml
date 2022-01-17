@@ -3,8 +3,6 @@
 - name: set up satellite
   hosts:
     - all
-  collections:
-    - jjaswanson4.install_satellite
   pre_tasks:
     - name: load in satellite vars
       include_vars:
