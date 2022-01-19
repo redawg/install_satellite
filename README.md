@@ -1,8 +1,8 @@
 # install_satellite
 
-Ansible collection for installing and tuning satellite. Updated for Red Hat Satellite 6.8.
+This has been forked from jjaswanson4/install_satellite.   I made slight changes to suit my needs but his collection is available at:
 
-This collection is also available on [ansible galaxy](https://galaxy.ansible.com/jjaswanson4/install_satellite).
+[ansible galaxy](https://galaxy.ansible.com/jjaswanson4/install_satellite).
 
 ## Overview
 This collection takes a RHEL7 host and installs satellite. It follows these steps:
