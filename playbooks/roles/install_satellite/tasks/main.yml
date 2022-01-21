@@ -41,15 +41,7 @@
 
 - name: Set Satellite Master Install Settings
   ansible.builtin.include_tasks: set-initial-install-settings.yml
-  # My use case will only be Satellite
-  #  when:
-  #    - "'satellite' in group_names"
 
 - name: Import Satellite Install Tasks
   ansible.builtin.include_tasks: run-satellite-installer.yml
 
-  # My use case will only be Satellite.  If using capsules, uncomment
-      #- name: Import Capsule Install Tasks
-      #  ansible.builtin.include_tasks: capsule.yml
-      #  when:
-      #    - "'capsule' in group_names"

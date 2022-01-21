@@ -7,9 +7,6 @@ common_repos:
 satellite_repos:
   - "rhel-7-server-satellite-{{ satellite.version }}-rpms"
 
-capsule_repos:
-  - "rhel-7-server-satellite-capsule-{{ satellite.version }}-rpms"
-
 maintenance_repos:
   - rhel-7-server-satellite-maintenance-6-rpms
 

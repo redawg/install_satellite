@@ -72,12 +72,7 @@ satellite:
 ```
 
 ## Inventory Structure
-This collection targets satellite servers, however it's a good idea to break up satellite/capsule servers and define var files for each individually:
 ```yaml
 [satellite]
 satellite67.josh.lab.msp.redhat.com vars_file=/home/jswanson/ansible/satellite6.7-collections/satellite67.josh.lab.msp.redhat.com.vars.yml ansible_user=root
-
-[capsule]
-capsule67-01.josh.lab.msp.redhat.com vars_file=/home/jswanson/ansible/satellite6.7-collections/capsule67-01.josh.lab.msp.redhat.com.vars.yml ansible_user=root
-capsule67-02.josh.lab.msp.redhat.com vars_file=/home/jswanson/ansible/satellite6.7-collections/capsule67-02.josh.lab.msp.redhat.com.vars.yml ansible_user=root
 ```
