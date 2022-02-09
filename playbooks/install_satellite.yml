@@ -3,9 +3,5 @@
 - name: set up satellite
   hosts:
     - all
-  pre_tasks:
-    - name: load in satellite vars
-      include_vars:
-        file: "{{ vars_file }}"
   roles:
     - install_satellite
